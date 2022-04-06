@@ -29,14 +29,19 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function titleCase(string) {
-    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+    // return string[0].toUpperCase() + string.slice(1).toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-const btnrock = document.querySelector('.rock');
-btnrock.onclick = function() {playerPlay()};
+const btns = document.querySelectorAll(".play");
 
-function playerPlay() {
-    let play = prompt("Rock, Paper, or Scissor?");
+for (let btn of btns) {
+    btn.onclick = function() {playerPlay(btn.id)};
+}
+
+function playerPlay(id) {
+    let play = document.getElementById(id).innerHTML;
+    console.log(play);
     return(titleCase(play));
 }
 
