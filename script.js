@@ -1,5 +1,3 @@
-// const values = ["Rock", "Paper", "Scissor"];
-
 conditions = {
     Rock: "Scissor",
     Paper: "Rock",
@@ -33,6 +31,9 @@ function playRound(playerSelection, computerSelection) {
 function titleCase(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
+
+const btnrock = document.querySelector('.rock');
+btnrock.onclick = function() {playerPlay()};
 
 function playerPlay() {
     let play = prompt("Rock, Paper, or Scissor?");
