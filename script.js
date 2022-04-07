@@ -10,12 +10,21 @@ result = {
     '-1': 'LOSE'
 }
 
+const btns = document.querySelectorAll(".play");
+const gogame = document.querySelector(".game");
+const container = document.querySelector(".container");
+const choice = document.createElement('div');
+const gamescore = document.createElement('div');
+
 function computerPlay() {
     let keys = Object.keys(conditions);
     return conditions[keys[Math.floor(keys.length * Math.random())]];
 }
 
 function playRound(playerSelection, computerSelection) {
+    choice.classList.add('choice');
+    choice.textContent = "You: " + playerSelection + ' ' + "AI: " + computerSelection;
+    container.appendChild(choice);
     console.log(playerSelection, computerSelection);
     if (conditions[playerSelection] === computerSelection) {
         return 1;
@@ -28,28 +37,22 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function titleCase(string) {
-    // return string[0].toUpperCase() + string.slice(1).toLowerCase();
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
-
-const btns = document.querySelectorAll(".play");
-
-for (let btn of btns) {
+btns.forEach((btn) => {
     btn.onclick = function() {playerPlay(btn.id)};
-}
+})
 
 function playerPlay(id) {
     let play = document.getElementById(id).innerHTML;
-    console.log(play);
-    return(titleCase(play));
-}
 
-function game(number_of_games) {
-    for (let i = 0; i < number_of_games; i++) {
-        const playerSelection = playerPlay();
+    gogame.onclick = function() {game()};
+
+    function game() {
+        const playerSelection = play;
         const computerSelection = computerPlay();
         let score = playRound(playerSelection, computerSelection);
+        gamescore.classList.add('gamescore');
+        gamescore.textContent = score;
+        container.appendChild(gamescore);
         console.log(score);
     }
 }
