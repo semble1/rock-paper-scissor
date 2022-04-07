@@ -16,6 +16,11 @@ const container = document.querySelector(".container");
 const choice = document.createElement('div');
 const gamescore = document.createElement('div');
 
+let playerpoint = 0;
+let aipoint = 0;
+
+let test = prompt("Win at what score?");
+
 function computerPlay() {
     let keys = Object.keys(conditions);
     return conditions[keys[Math.floor(keys.length * Math.random())]];
@@ -44,15 +49,24 @@ btns.forEach((btn) => {
 function playerPlay(id) {
     let play = document.getElementById(id).innerHTML;
 
-    gogame.onclick = function() {game()};
+    gogame.onclick = function() {game(play)};
+}
 
-    function game() {
-        const playerSelection = play;
-        const computerSelection = computerPlay();
-        let score = playRound(playerSelection, computerSelection);
-        gamescore.classList.add('gamescore');
-        gamescore.textContent = score;
-        container.appendChild(gamescore);
-        console.log(score);
+function game(play) {
+    const playerSelection = play;
+    const computerSelection = computerPlay();
+    let score = playRound(playerSelection, computerSelection);
+
+    if (score === 1) {
+        playerpoint = playerpoint+1;
     }
+    else if (score === -1) {
+        aipoint = aipoint+1;
+    }
+    console.log(playerpoint);
+    console.log(aipoint);
+
+    gamescore.classList.add('gamescore');
+    gamescore.textContent = result[score];
+    container.appendChild(gamescore);
 }
