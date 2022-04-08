@@ -4,22 +4,33 @@ conditions = {
     Scissor: "Paper"
 }
 
-result = {
+outcome = {
     1: 'WIN',
     0: 'TIE',
     '-1': 'LOSE'
 }
 
+let playerpoint = 0;
+let aipoint = 0;
+
+const start = document.querySelector(".start");
+const hide = document.querySelectorAll(".hide");
 const btns = document.querySelectorAll(".play");
 const gogame = document.querySelector(".game");
 const container = document.querySelector(".container");
 const choice = document.createElement('div');
 const gamescore = document.createElement('div');
+const numscorep = document.createElement('div');
+const numscorea = document.createElement('div');
+const result = document.createElement('div');
 
-let playerpoint = 0;
-let aipoint = 0;
-
-let test = prompt("Win at what score?");
+start.onclick = function() {remove()};
+function remove() {
+    hide.forEach((hid) => {
+        hid.classList.toggle("hide");
+    });
+    start.classList.toggle("hide");
+}
 
 function computerPlay() {
     let keys = Object.keys(conditions);
@@ -30,7 +41,6 @@ function playRound(playerSelection, computerSelection) {
     choice.classList.add('choice');
     choice.textContent = "You: " + playerSelection + ' ' + "AI: " + computerSelection;
     container.appendChild(choice);
-    console.log(playerSelection, computerSelection);
     if (conditions[playerSelection] === computerSelection) {
         return 1;
     }
@@ -63,10 +73,33 @@ function game(play) {
     else if (score === -1) {
         aipoint = aipoint+1;
     }
-    console.log(playerpoint);
-    console.log(aipoint);
+
+    numscorep.classList.add('numscorep');
+    numscorep.textContent = playerpoint;
+    container.appendChild(numscorep);
+
+    numscorea.classList.add('numscorea');
+    numscorea.textContent = aipoint;
+    container.appendChild(numscorea);
 
     gamescore.classList.add('gamescore');
-    gamescore.textContent = result[score];
+    gamescore.textContent = outcome[score];
     container.appendChild(gamescore);
+
+    if (playerpoint === 5 && aipoint < 5) {
+        result.classList.add('result');
+        result.textContent = "YOU WIN!";
+        container.appendChild(result);
+        remove();
+        start.innerHTML = "RESTART";
+        start.onclick = function() {document.location.reload(true)};
+    }
+    else if (aipoint === 5 && playerpoint < 5) {
+        result.classList.add('result');
+        result.textContent = "YOU LOSE!";
+        container.appendChild(result);
+        remove();
+        start.innerHTML = "RESTART";
+        start.onclick = function() {document.location.reload(true)};
+    }
 }
