@@ -75,11 +75,11 @@ function game(play) {
     }
 
     numscorep.classList.add('numscorep');
-    numscorep.textContent = playerpoint;
+    numscorep.textContent = "You: " + playerpoint;
     container.appendChild(numscorep);
 
     numscorea.classList.add('numscorea');
-    numscorea.textContent = aipoint;
+    numscorea.textContent = "AI: " + aipoint;
     container.appendChild(numscorea);
 
     gamescore.classList.add('gamescore');
