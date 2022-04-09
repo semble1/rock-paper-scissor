@@ -5,9 +5,9 @@ conditions = {
 }
 
 outcome = {
-    1: 'WIN',
-    0: 'TIE',
-    '-1': 'LOSE'
+    1: 'One for you!',
+    0: 'A tie... go again.',
+    '-1': 'Try again?'
 }
 
 let playerpoint = 0;
