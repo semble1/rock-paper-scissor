@@ -17,12 +17,14 @@ const start = document.querySelector(".start");
 const hide = document.querySelectorAll(".hide");
 const btns = document.querySelectorAll(".play");
 const gogame = document.querySelector(".game");
+const restart = document.querySelector(".restart");
 const container = document.querySelector(".container");
 const choice = document.createElement('div');
 const gamescore = document.createElement('div');
 const numscorep = document.createElement('div');
 const numscorea = document.createElement('div');
 const result = document.createElement('div');
+let curbtn = undefined;
 
 start.onclick = function() {remove()};
 function remove() {
@@ -54,7 +56,16 @@ function playRound(playerSelection, computerSelection) {
 
 btns.forEach((btn) => {
     btn.onclick = function() {playerPlay(btn.id)};
+    btn.onclick = function() {selectedBtn(btn)};
 })
+
+function selectedBtn(btn) {
+    if (curbtn) { //check if not undefined -> if undefined, error
+        curbtn.classList.remove("select");
+    }
+    curbtn = btn; //set current btn
+    btn.classList.add("select");
+}
 
 function playerPlay(id) {
     let play = document.getElementById(id).innerHTML;
@@ -91,7 +102,7 @@ function game(play) {
         result.textContent = "YOU WIN!";
         container.appendChild(result);
         remove();
-        start.innerHTML = "RESTART";
+        restart.innerHTML = "RESTART";
         start.onclick = function() {document.location.reload(true)};
     }
     else if (aipoint === 5 && playerpoint < 5) {

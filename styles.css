@@ -17,6 +17,11 @@ body {
     flex-direction: column;
 }
 
+.allbtn {
+    display: flex;
+    gap: 10px;
+}
+
 .start {
     position: relative;
     height: 50px;
@@ -30,13 +35,13 @@ body {
 }
 
 .start:before, .start:after {
-    content: "";
     position: absolute;
     background: #fff;
     transition: all .2s linear;
 }
 
 .start:before {
+    content: "";
     width: calc(100% + 6px);
     height: calc(100% - 16px);
     top: 8px;
@@ -44,6 +49,7 @@ body {
 }
 
 .start:after {
+    content: "";
     width: calc(100% - 16px);
     height: calc(100% + 6px);
     top: -3px;
@@ -73,4 +79,43 @@ body {
     z-index: 3;
     position: relative;
     font-weight: 600;
+}
+
+.play {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+.play:hover {
+    background-color: #fff;
+    color: #422800;
+}
+  
+.play:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+  
+@media (min-width: 768px) {
+    .play {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+}
+
+.select {
+    background-color: #774b0a;
+    color: #fff;
 }
