@@ -22,7 +22,7 @@ body {
     gap: 10px;
 }
 
-.start {
+/* .start {
     position: relative;
     height: 50px;
     padding: 0 30px;
@@ -79,9 +79,9 @@ body {
     z-index: 3;
     position: relative;
     font-weight: 600;
-}
+} */
 
-.play {
+button {
     background-color: #fbeee0;
     border: 2px solid #422800;
     box-shadow: #422800 4px 4px 0 0;
@@ -96,20 +96,20 @@ body {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-  }
+}
   
-.play:hover {
+button:hover {
     background-color: #fff;
     color: #422800;
 }
   
-.play:active {
+button:active {
     box-shadow: #422800 2px 2px 0 0;
     transform: translate(2px, 2px);
 }
   
 @media (min-width: 768px) {
-    .play {
+    button {
       min-width: 120px;
       padding: 0 25px;
     }

@@ -27,6 +27,7 @@ const result = document.createElement('div');
 let curbtn = undefined;
 
 start.onclick = function() {remove()};
+
 function remove() {
     hide.forEach((hid) => {
         hid.classList.toggle("hide");
@@ -55,12 +56,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 btns.forEach((btn) => {
-    btn.onclick = function() {playerPlay(btn.id)};
-    btn.onclick = function() {selectedBtn(btn)};
+    btn.onclick = function() {playerPlay(btn.id); selectedBtn(btn)};
 })
 
 function selectedBtn(btn) {
-    if (curbtn) { //check if not undefined -> if undefined, error
+    if (curbtn) { //check if not undefined
         curbtn.classList.remove("select");
     }
     curbtn = btn; //set current btn
@@ -84,15 +84,15 @@ function game(play) {
     else if (score === -1) {
         aipoint = aipoint+1;
     }
-
+    //shows player's points
     numscorep.classList.add('numscorep');
     numscorep.textContent = "You: " + playerpoint;
     container.appendChild(numscorep);
-
+    //shows computer's points
     numscorea.classList.add('numscorea');
     numscorea.textContent = "AI: " + aipoint;
     container.appendChild(numscorea);
-
+    //shows text for round wins
     gamescore.classList.add('gamescore');
     gamescore.textContent = outcome[score];
     container.appendChild(gamescore);
